@@ -12,7 +12,6 @@
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
-#include "Math.h"
 
 #include <string>
 #include <sstream>
@@ -42,7 +41,7 @@
 #define IMCGREY   ImColor(50, 50, 50, 255)
 
 namespace Util {
-    inline std::string ReadTextFromFile(std::string path) {
+    inline std::string ReadTextFromFile(std::string& path) {
         std::ifstream file(path);
         std::string _string;
         std::string line;

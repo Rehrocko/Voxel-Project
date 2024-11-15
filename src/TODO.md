@@ -24,8 +24,7 @@ After we have rendered our chunk we can move onto to more of the game logic. I w
 
 This should provide a basic starting point for the game logic to go off of.
 
-
-( How will we find these chunks? )
+## How will we find these chunks?
 
 Each chunk will be defined at a specific ChunkPos, an IVec3 that, when given a certain value, like (3, 2, 1), loops through each loaded chunk
 to see if there is one that has the position (3, 2, 1)
@@ -33,3 +32,10 @@ to see if there is one that has the position (3, 2, 1)
 I.E make (3, 2, 1) an integer like 78590234, however, I believe this is already how an IVec3 works so I doubt it would optimize...
 We want a way to also convert voxel coord to chunk pos, so that a voxel at (534, 123, 52) lines up to chunk (16, 3, 1), or something like that,
 this may entirely be unnecessary I don't know yet.
+
+# Currently working on
+
+- Quick keybinds (maybe in Engine.cpp?)
+- Render something
+- Create voxel class
+- CAMERA!!
