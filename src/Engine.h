@@ -10,6 +10,7 @@ namespace Engine
 	// Game Logic Functions
 	void Initialize();
 	void Update();
+	void QuickKeys();
 
 	// Developer Functions
 	inline bool	displayFPS = true;

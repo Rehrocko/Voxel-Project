@@ -29,13 +29,20 @@ namespace Engine
 			Input	::	Update();
 
 			DeveloperImGUI();
-			if (Input::KeyPressed(GLFW_KEY_F))
-				GL::ToggleFullscreen();
-			if (Input::KeyPressed(GLFW_KEY_Z))
-				GL::ToggleCursor();
+			QuickKeys();
 			GL::SwapBuffersPollEvents();
 		}
 		GL::Terminate();
+	}
+
+	void QuickKeys() {
+		if (Input::KeyPressed(GLFW_KEY_F))
+			GL::ToggleFullscreen();
+		if (Input::KeyPressed(GLFW_KEY_Z))
+			GL::ToggleCursor();
+		if (Input::KeyPressed(GLFW_KEY_O)) {
+			openDevMenu = !openDevMenu;
+		}
 	}
 
 	// Developer Functions
@@ -51,10 +58,6 @@ namespace Engine
 		if (displayFPS && ImGui::Begin("FPS", open, ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
 			ImGui::Text(std::to_string(ImGui::GetIO().Framerate).c_str());
 			ImGui::End();
-		}
-
-		if (Input::KeyPressed(GLFW_KEY_O)) {
-			openDevMenu = !openDevMenu;
 		}
 
 		int settingsWidth = 150;
