@@ -1,10 +1,5 @@
 #pragma once
 
-#include "Rendering/Shader.h"
-#include "Core/GL.h"
-#include "Core/Time.h"
-#include "Core/Input.h"
-
 namespace Engine
 {
 	// Game Logic Functions

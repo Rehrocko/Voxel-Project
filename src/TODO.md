@@ -35,7 +35,5 @@ this may entirely be unnecessary I don't know yet.
 
 # Currently working on
 
-- Quick keybinds (maybe in Engine.cpp?)
 - Render something
 - Create voxel class
-- CAMERA!!

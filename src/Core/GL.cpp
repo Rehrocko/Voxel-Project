@@ -249,7 +249,7 @@ void GL::ToggleCursor() {
         ShowCursor();
     }
     else {
-        HideCursor();
+        DisableCursor();
     }
 }
 
