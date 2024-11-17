@@ -7,16 +7,10 @@
 #include "Core/Time.h"
 #include "Core/Input.h"
 #include "Core/Scene.h"
+#include "Rendering/Renderer.h"
 
 namespace Engine
 {
-	
-	std::vector<Scene> _scenes = { Scene() };
-
-	// mainScene really just means working scene, I also just wanted to have a vector of
-	// scenes in case I ever needed it, we basically only use mainScene
-	Scene& mainScene = _scenes[0];
-
 	// Game Logic Functions
 	
 	void Initialize() {
@@ -27,6 +21,7 @@ namespace Engine
 
 		Time	::	Init();
 		Input	::	Init();
+		Renderer::	Init();
 
 		// Start update cycle
 		Update();
@@ -42,8 +37,10 @@ namespace Engine
 
 			mainScene.Update();
 
-			DeveloperImGUI();
+			Renderer::RenderFrame();
+
 			QuickKeys();
+			GL::SetScrollOffset(0);
 			GL::SwapBuffersPollEvents();
 		}
 		GL::Terminate();
@@ -55,40 +52,8 @@ namespace Engine
 		if (Input::KeyPressed(GLFW_KEY_Z))
 			GL::ToggleCursor();
 		if (Input::KeyPressed(GLFW_KEY_O))
-			openDevMenu = !openDevMenu;
+			Renderer::openDevMenu = !Renderer::openDevMenu;
 		if (Input::KeyPressed(GLFW_KEY_C))
-			displayFPS = !displayFPS;
-	}
-
-	// Developer Functions
-	
-	void DeveloperImGUI() {
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-		bool* open = nullptr;
-		ImGui::SetNextWindowPos(ImVec2(0, 0));
-		ImGui::SetNextWindowSize(ImVec2(120, 50));
-		if (displayFPS && ImGui::Begin("FPS", open, ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse)) {
-			ImGui::Text(std::to_string(ImGui::GetIO().Framerate).c_str());
-			ImGui::End();
-		}
-
-		int settingsWidth = 300;
-
-		ImGui::SetNextWindowPos(ImVec2(GL::GetWindowWidth() - settingsWidth, 0));
-		ImGui::SetNextWindowSize(ImVec2(settingsWidth, GL::GetWindowHeight() / 4));
-		if (openDevMenu && ImGui::Begin("Settings", open, ImGuiWindowFlags_NoNavFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoTitleBar)) {
-			Camera mainCamera = mainScene._cameras[0];
-			std::string mainCameraYaw = std::format("Yaw: {}", mainCamera.yaw);
-			std::string mainCameraPitch = std::format("Pitch: {}", mainCamera.pitch);
-			std::string mainCameraPosition = std::format("Position: {}", glm::to_string(mainCamera.position));
-			ImGui::Text(mainCameraYaw.c_str());
-			ImGui::Text(mainCameraPitch.c_str());
-			ImGui::Text(mainCameraPosition.c_str());
-			ImGui::End();
-		}
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			Renderer::displayFPS = !Renderer::displayFPS;
 	}
 }

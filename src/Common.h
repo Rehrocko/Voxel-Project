@@ -19,7 +19,7 @@
 #include <filesystem>
 
 #define NEAR_PLANE 0.5f
-#define FAR_PLANE 50.0f
+#define FAR_PLANE 500.0f
 
 // Normal people colors
 #define BLACK   glm::vec3(0,0,0)

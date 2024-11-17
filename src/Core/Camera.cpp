@@ -2,6 +2,7 @@
 
 #include "Time.h"
 #include "Input.h"
+#include "GL.h"
 
 void Camera::CalculateVectors() {
 	// calculate the new Front vector
@@ -25,6 +26,7 @@ void Camera::Update() {
 }
 
 void Camera::Movement() {
+	speed += GL::GetScrollOffset();
 	float velocity = speed * Time::deltaTime;
 	if (Input::KeyDown(GLFW_KEY_W)) position += front	* velocity;
 	if (Input::KeyDown(GLFW_KEY_A)) position += -right	* velocity;
@@ -34,7 +36,7 @@ void Camera::Movement() {
 
 void Camera::Rotation() {
 	yaw		+=	Input::GetMouseOffsetX() * sensitivity;
-	pitch	+=	Input::GetMouseOffsetY() * sensitivity;
+	pitch	-=	Input::GetMouseOffsetY() * sensitivity;
 
 	yaw = fmod((fmod(yaw + 180.0f, 360.0f) + 360.0f), 360.0f) - 180.0f;
 	pitch = std::clamp(pitch, -89.0f, 89.0f);

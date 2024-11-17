@@ -18,6 +18,8 @@ namespace GL {
 	GLFWwindow* GetWindowPtr();
 	int			GetCursorScreenX();
 	int			GetCursorScreenY();
+	int			GetScrollOffset();
+	void		SetScrollOffset(int off);
 	bool		WindowHasFocus();
 	bool		WindowHasNotBeenForceClosed();
 	void		ForceCloseWindow();

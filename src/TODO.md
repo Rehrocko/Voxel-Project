@@ -35,5 +35,5 @@ this may entirely be unnecessary I don't know yet.
 
 # Currently working on
 
-- Render something
 - Create voxel class
+- Create some way to color the voxels and get depth

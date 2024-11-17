@@ -23,7 +23,7 @@ int checkCompileErrors(unsigned int shader, const std::string& type) {
     return success;
 }
 
-void Shader::Load(std::string& vertexPath, std::string& fragmentPath) {
+void Shader::Load(std::string vertexPath, std::string fragmentPath) {
     _vertexPath = vertexPath;
     _fragmentPath = fragmentPath;
     std::string vertexSource   = Util::ReadTextFromFile(vertexPath);
@@ -71,22 +71,22 @@ void Shader::Use() {
     glUseProgram(ID);
 }
 
-void Shader::SetBool(const std::string& name, bool value) {
+void Shader::SetBool(std::string name, bool value) {
     glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
 }
 
-void Shader::SetInt(const std::string& name, int value) {
+void Shader::SetInt(std::string name, int value) {
     glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
 }
 
-void Shader::SetFloat(const std::string& name, float value) {
+void Shader::SetFloat(std::string name, float value) {
     glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 
-void Shader::SetVec3(const std::string& name, const glm::vec3& value) {
+void Shader::SetVec3(std::string name, const glm::vec3 value) {
     glUniform3fv(glGetUniformLocation(ID, name.c_str()), 1, &value[0]);
 }
 
-void Shader::SetMat4(const std::string& name, glm::mat4 mat) {
+void Shader::SetMat4(std::string name, glm::mat4 mat) {
     glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }

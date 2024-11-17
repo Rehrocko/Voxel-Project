@@ -257,6 +257,14 @@ GLFWwindow* GL::GetWindowPtr() {
     return _window;
 }
 
+int GL::GetScrollOffset() {
+    return _scrollWheelYOffset;
+}
+
+void GL::SetScrollOffset(int off) {
+    _scrollWheelYOffset = off;
+}
+
 int GL::GetCursorScreenX() {
     return _mouseScreenX;
 }
