@@ -17,6 +17,7 @@
 #include <sstream>
 #include <fstream>
 #include <filesystem>
+#include <cstdint>
 
 #define NEAR_PLANE 0.5f
 #define FAR_PLANE 500.0f

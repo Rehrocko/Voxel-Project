@@ -153,6 +153,7 @@ xcopy "$(ProjectDir)res\shaders" "$(TargetDir)res\shaders" /e /y /i /r
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\Chunk.cpp" />
     <ClCompile Include="src\Core\GL.cpp" />
     <ClCompile Include="src\Core\Input.cpp" />
     <ClCompile Include="src\Core\Scene.cpp" />
@@ -181,10 +182,13 @@ xcopy "$(ProjectDir)res\shaders" "$(TargetDir)res\shaders" /e /y /i /r
   <ItemGroup>
     <ClInclude Include="src\Core\Camera.h" />
     <ClInclude Include="src\Common.h" />
+    <ClInclude Include="src\Core\Chunk.h" />
     <ClInclude Include="src\Core\GL.h" />
     <ClInclude Include="src\Core\Input.h" />
+    <ClInclude Include="src\Core\Material.h" />
     <ClInclude Include="src\Core\Scene.h" />
     <ClInclude Include="src\Core\Time.h" />
+    <ClInclude Include="src\Core\Voxel.h" />
     <ClInclude Include="src\Engine.h" />
     <ClInclude Include="src\Rendering\Renderer.h" />
     <ClInclude Include="src\Rendering\Shader.h" />

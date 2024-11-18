@@ -47,7 +47,7 @@ namespace Engine
 	}
 
 	void QuickKeys() {
-		if (Input::KeyPressed(GLFW_KEY_F))
+		if (Input::KeyPressed(GLFW_KEY_F) && !Input::KeyDown(GLFW_KEY_LEFT_ALT))
 			GL::ToggleFullscreen();
 		if (Input::KeyPressed(GLFW_KEY_Z))
 			GL::ToggleCursor();
@@ -55,5 +55,9 @@ namespace Engine
 			Renderer::openDevMenu = !Renderer::openDevMenu;
 		if (Input::KeyPressed(GLFW_KEY_C))
 			Renderer::displayFPS = !Renderer::displayFPS;
+		if (Input::KeyPressed(GLFW_KEY_V))
+			GL::ToggleVSync();
+		if (Input::KeyPressed(GLFW_KEY_F) && Input::KeyDown(GLFW_KEY_LEFT_ALT))
+			Renderer::showUI = !Renderer::showUI;
 	}
 }

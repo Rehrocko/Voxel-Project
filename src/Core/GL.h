@@ -15,6 +15,11 @@ namespace GL {
 	void		HideCursor();
 	void		ShowCursor();
 	void		ToggleCursor();
+	bool		CursorIsVisible();
+	void		EnableVSync();
+	void		DisableVSync();
+	void		ToggleVSync();
+	bool		VSyncIsEnabled();
 	GLFWwindow* GetWindowPtr();
 	int			GetCursorScreenX();
 	int			GetCursorScreenY();

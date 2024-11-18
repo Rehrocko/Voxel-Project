@@ -15,8 +15,9 @@ namespace GL {
     int _mouseScreenY = 0;
     int _windowHasFocus = true;
     bool _forceCloseWindow = false;
-    bool showCursor = false;
+    bool _showCursor = false;
     int _scrollWheelYOffset = 0;
+    bool _vsync = true;
     WindowMode _windowMode = WINDOWED;
 }
 
@@ -231,26 +232,30 @@ int GL::GetCursorY() {
 
 void GL::DisableCursor() {
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    showCursor = false;
+    _showCursor = false;
 }
 
 void GL::HideCursor() {
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-    showCursor = false;
+    _showCursor = false;
 }
 
 void GL::ShowCursor() {
     glfwSetInputMode(_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-    showCursor = true;
+    _showCursor = true;
 }
 
 void GL::ToggleCursor() {
-    if (!showCursor) {
+    if (!_showCursor) {
         ShowCursor();
     }
     else {
         DisableCursor();
     }
+}
+
+bool GL::CursorIsVisible() {
+    return _showCursor;
 }
 
 GLFWwindow* GL::GetWindowPtr() {
@@ -288,6 +293,27 @@ void GL::ForceCloseWindow() {
 void GL::ClearScreen(glm::vec4 colorRGBA, GLbitfield mask) {
     glClearColor(colorRGBA.x, colorRGBA.y, colorRGBA.z, colorRGBA.r);
     glClear(mask);
+}
+
+void GL::EnableVSync() {
+    _vsync = true;
+    glfwSwapInterval(1);
+}
+
+void GL::DisableVSync() {
+    _vsync = false;
+    glfwSwapInterval(0);
+}
+
+void GL::ToggleVSync() {
+    if (!_vsync) 
+        EnableVSync();
+    else 
+        DisableVSync();
+}
+
+bool GL::VSyncIsEnabled() {
+    return _vsync;
 }
 
 // Callbacks

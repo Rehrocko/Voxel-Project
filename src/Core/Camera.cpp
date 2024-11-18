@@ -28,13 +28,16 @@ void Camera::Update() {
 void Camera::Movement() {
 	speed += GL::GetScrollOffset();
 	float velocity = speed * Time::deltaTime;
-	if (Input::KeyDown(GLFW_KEY_W)) position += front	* velocity;
-	if (Input::KeyDown(GLFW_KEY_A)) position += -right	* velocity;
-	if (Input::KeyDown(GLFW_KEY_S)) position += -front	* velocity;
-	if (Input::KeyDown(GLFW_KEY_D)) position += right	* velocity;
+	if (Input::KeyDown(GLFW_KEY_W)) position += front			* velocity;
+	if (Input::KeyDown(GLFW_KEY_A)) position += -right			* velocity;
+	if (Input::KeyDown(GLFW_KEY_S)) position += -front			* velocity;
+	if (Input::KeyDown(GLFW_KEY_D)) position += right			* velocity;
+	if (Input::KeyDown(GLFW_KEY_SPACE)) position += up			* velocity;
+	if (Input::KeyDown(GLFW_KEY_LEFT_CONTROL)) position += -up	* velocity;
 }
 
 void Camera::Rotation() {
+	if (GL::CursorIsVisible()) return;
 	yaw		+=	Input::GetMouseOffsetX() * sensitivity;
 	pitch	-=	Input::GetMouseOffsetY() * sensitivity;
 
